@@ -13,9 +13,9 @@ F5=b2*s+k2;
 F6=F5;
 F7=m3*s^2 + b2*s + k2;
 
-G1 = 1/(F1- (F2*F3/(F4-(F5*F6/F7))))
-G2 = G1*-F3/(F4-(F5*F6/F7))
-G3 = F6/F7*G2
+G1 = 1/(F1- (F2*F3/(F4-(F5*F6/F7))));
+G2 = G1*-F3/(F4-(F5*F6/F7));
+G3 = F6/F7*G2;
 
 alpha = step(G1, t);
 vit_alpha = step(G1*s, t);
