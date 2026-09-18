@@ -1,6 +1,10 @@
 clear; close all; clc 
 
 definit_parametres;
+
+k1=5000;
+b1=400;
+
 simule_systeme;
 
 alpha=0.00001*round(alpha*100000);
@@ -15,8 +19,22 @@ acc_alpha=0.001*round(acc_alpha*1000);
 acc_beta=0.001*round(acc_beta*1000);
 acc_gamma=0.001*round(acc_gamma*1000);
 
+u=0.55;
 
-mesures= 50:10:800; 
+alpha = filtfilt([1 u-1], u, alpha);
+vit_alpha = filtfilt([1 u-1], u, vit_alpha);
+acc_alpha = filtfilt([1 u-1], u, acc_alpha);
+
+beta = filtfilt([1 u-1], u, beta);
+vit_beta = filtfilt([1 u-1], u, vit_beta);
+acc_beta = filtfilt([1 u-1], u, acc_beta);
+
+gamma = filtfilt([1 u-1], u, gamma);
+vit_gamma = filtfilt([1 u-1], u, vit_gamma);
+acc_gamma = filtfilt([1 u-1], u, acc_gamma);
+
+
+mesures= 1:length(t); 
 
 identifie_parametres; 
 

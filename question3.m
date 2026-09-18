@@ -1,6 +1,10 @@
 clear; close all; clc 
 
 definit_parametres;
+
+k1=5000;
+b1=400;
+
 simule_systeme;
 
 alpha=0.00001*round(alpha*100000);
@@ -15,8 +19,7 @@ acc_alpha=0.001*round(acc_alpha*1000);
 acc_beta=0.001*round(acc_beta*1000);
 acc_gamma=0.001*round(acc_gamma*1000);
 
-
-mesures= 50:10:800; 
+mesures= 1:length(t);  
 
 identifie_parametres; 
 

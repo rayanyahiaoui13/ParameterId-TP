@@ -1,4 +1,4 @@
-definit_parametres
+%definit_parametres
 
 t = (0:0.01:8)';
 f = ones(length(t), 1);
