@@ -6,11 +6,11 @@
 close all
 clc
 clear all; %% efface toutes les variables existantes
-load releve_vit_cste_axe2; %% charge les relevés expérimentaux
+load releve_vit_cste_axe2; %% charge les relevÃ©s expÃ©rimentaux
 
-%% Paramètres connus a priori:
+%% ParamÃ¨tres connus a priori:
 kc2=0.0525; %% constante de couple de l'axe 2.
-N2=4.5; %% inverse du rapport de réduction de l'axe 2.
+N2=4.5; %% inverse du rapport de rÃ©duction de l'axe 2.
 
 kc1=0.0525;
 N1=20.25;
@@ -22,26 +22,26 @@ Y = zeros(29344,4);
 u = zeros(29344,1);
 
 for i=1:29344
-    Y(i,:) = [cos(q2(i)) sign(qp2(i)) qp2(i) 1];
-    u(i) = kc2*N2*i2(i);
+    Y(i,:) = [cos(q2(i)) sign(qpfil2(i)) qpfil2(i) 1];
+    u(i) = kc2*N2*ifil2(i);
 end
-%% Calcul des paramètres
+%% Calcul des paramÃ¨tres
 p=pinv(Y)*u;
 
-%% Affichage des résultats.
+%% Affichage des rÃ©sultats.
 format long
-disp('Paramètres estimés à partir des données brutes :');
+disp('ParamÃ¨tres estimÃ©s Ã  partir des donnÃ©es brutes :');
 p'
 
 figure(1)
 clf; %% clear figure
-h=plot3(q2,qp2,kc2*N2*i2,'x');
+h=plot3(q2,qpfil2,kc2*N2*ifil2,'x');
 set(h,'LineWidth',0.5);
-hold on; %% permet de conserver le graphique et d'en ajouter d'autres sur la même fig.
-h=plot3(q2,qp2,Y*p,'.');
+hold on; %% permet de conserver le graphique et d'en ajouter d'autres sur la mÃªme fig.
+h=plot3(q2,qpfil2,Y*p,'.');
 set(h,'LineWidth',1.5);
-title('Résultats de l''identification sans filtrage');
-legend('\Gamma_2 non filtré', 'modèle');
+title('RÃ©sultats de l''identification avec filtrage');
+legend('\Gamma_2 non filtrÃ©', 'modÃ¨le');
 grid on;
 xlabel('$q_2$','Interpreter','latex')
 ylabel('$\dot{q}_2$','Interpreter','latex')
