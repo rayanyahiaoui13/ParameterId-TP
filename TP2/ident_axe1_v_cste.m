@@ -16,8 +16,8 @@ N1  = 20.25;
 
 
 %% Construction de la matrice Y.
-Y = zeros(29344,4);
-u = zeros(29344,1);
+Y = zeros(33208,4);
+u = zeros(33208,1);
 
 for i=1:29344
     Y(i,:) = [cos(q1(i)) sign(qpfil1(i)) qpfil1(i) 1];
