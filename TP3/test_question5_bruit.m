@@ -3,8 +3,7 @@ clear;
 close all;
 
 % Parametres reels
-p_reel = [0.2; 0.4; 0.3; 0.25; 0.05; -0.03; 0.02; 0.1; -0.05; 0.08];
-
+p_reel = [0.2; 0.3; 0.2; 0.1; -0.1; 0.08; 0.1; 0.03; 0.025; 0.6];
 % Nombre de mesures
 N = 20;
 

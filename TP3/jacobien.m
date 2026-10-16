@@ -24,8 +24,8 @@ function J = jacobien(theta, p)
     a3 = q1 + q2 + q3;
 
     % Position dans R0
-    x0 = l0 + l1*cos(a1) + l2*cos(a2) + l3*cos(a3);
-    y0 =      l1*sin(a1) + l2*sin(a2) + l3*sin(a3);
+    x0 = l1*cos(a1) + l2*cos(a2) + l3*cos(a3);
+    y0 = l0 + l1*sin(a1) + l2*sin(a2) + l3*sin(a3);
 
     % Changement de repere R0 -> Rc
 
@@ -34,8 +34,8 @@ function J = jacobien(theta, p)
 
 
     % Derivees de x0 et y0 par rapport a l0, l1, l2, l3
-    dx0_dl0 = 1;
-    dy0_dl0 = 0;
+    dx0_dl0 = 0;
+    dy0_dl0 = 1;
 
     dx0_dl1 = cos(a1);
     dy0_dl1 = sin(a1);
@@ -94,7 +94,7 @@ function J = jacobien(theta, p)
     % Assemblage de la jacobienne 3x10
 
     J = [ Jx, Jx_dx, Jx_dy, Jx_dphi ;
-         Jy, Jy_dx, Jy_dy, Jy_dphi ;
-         0   0     0     0     1   1   1   0   0   0 ];
+          Jy, Jy_dx, Jy_dy, Jy_dphi ;
+          0 0 0 0 1 1 1 0 0 -1 ];
 
 end

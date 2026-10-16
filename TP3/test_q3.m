@@ -3,8 +3,7 @@ clear;
 close all;
 
 % Parametres reels
-p = [0.2; 0.4; 0.3; 0.25; 0.05; -0.03; 0.02; 0.1; -0.05; 0.08];
-
+p = [0.2; 0.3; 0.2; 0.1; -0.1; 0.08; 0.1; 0.03; 0.025; 0.6];
 % Dix configurations articulaires
 theta_mes = [
     0.1  0.2  -0.3;
@@ -36,8 +35,12 @@ disp(size(Jglobale))
 disp('Rang de la jacobienne globale :')
 disp(rang)
 
-% Verification de la direction non identifiable
-v = [1; 0; 0; 0; 0; 0; 0; 1; 0; 0];
-
+v = [1; 0; 0; 0; 0; 0; 0; 0; 1; 0];
 disp('Norme de Jglobale*v :')
 disp(norm(Jglobale*v))
+
+% Deuxieme direction non identifiable
+v2 = [0; 0; 0; 0; 1; 0; 0; p(1)-p(9); p(8); 1];
+
+disp('Norme de Jglobale*v2 :')
+disp(norm(Jglobale*v2))

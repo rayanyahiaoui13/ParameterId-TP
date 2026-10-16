@@ -22,11 +22,11 @@ function X = modele_geom(theta, p)
     a2 = q1 + q2;
     a3 = q1 + q2 + q3;
 
-    x0 = l0 + l1*cos(a1) + l2*cos(a2) + l3*cos(a3);
-    y0 =      l1*sin(a1) + l2*sin(a2) + l3*sin(a3);
+    x0 = l1*cos(a1) + l2*cos(a2) + l3*cos(a3);
+    y0 = l0 + l1*sin(a1) + l2*sin(a2) + l3*sin(a3);
 
-    % Orientation de l'outil
-    alpha = a3;
+    % Orientation de l'outil dans Rc
+    alpha = a3 - pi/2 - dphi;
 
     % Expression de la position dans Rc
     c = cos(dphi);

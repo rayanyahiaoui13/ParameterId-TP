@@ -5,8 +5,7 @@ close all;
 % Valeurs de test
 theta = [0.2; -0.4; 0.6];
 
-p = [0.2; 0.4; 0.3; 0.25; 0.05; -0.03; 0.02; 0.1; -0.05; 0.08];
-
+p = [0.2; 0.3; 0.2; 0.1; -0.1; 0.08; 0.1; 0.03; 0.025; 0.6];
 % Petite variation des parametres
 dp = 1e-6 * ones(10,1);
 

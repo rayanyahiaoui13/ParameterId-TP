@@ -23,7 +23,7 @@ function [erreur, rang] = tester_configuration( theta_parfait, p_reel, sigma, p_
     Jglobale = zeros(3*N,10);
 
     for i = 1:N
-        J_i = jacobien(theta_mes(i,:)', p_reel);
+        J_i = jacobien(theta_parfait(i,:)', p_reel);
         Jglobale(3*i-2:3*i,:) = J_i;
     end
 

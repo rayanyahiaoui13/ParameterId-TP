@@ -8,6 +8,11 @@ function [p, err_hist] = identification(theta_mes, X_mes, p_init, n_iter)
     N = size(theta_mes, 1);
     p = p_init;
 
+    % Parametres imposes
+    p(1) = 0.2;
+    p(5) = -0.1;
+
+    libres = [2 3 4 6 7 8 9 10];
     err_hist = zeros(n_iter, 1);
 
     fprintf('\nIterations de Gauss-Newton :\n');
@@ -38,14 +43,15 @@ function [p, err_hist] = identification(theta_mes, X_mes, p_init, n_iter)
 
         fprintf('%10d %18.6e %18.6e\n', k, norm_err, cout);
 
-        % On retire la colonne associee a l0
-        J_reduit = J(:, 2:10);
+        % On retire les colonnes associees a l0 et qo1
+        J_reduit = J(:, libres);
 
         % Mise a jour Gauss-Newton
         dp_reduit = J_reduit \ err;
 
-        % La variation de l0 est nulle
-        dp = [0; dp_reduit];
+        % Les variations de l0 et qo1 sont nulles
+        dp = zeros(10, 1);
+        dp(libres) = dp_reduit;
 
         % Mise a jour des parametres
         p = p + dp;
