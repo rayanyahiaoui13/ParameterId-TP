@@ -1,0 +1,75 @@
+clear;
+close all;
+clc;
+
+load('releve_vit_cste_axe2.mat');
+
+kc2=0.0525; 
+N2=4.5;
+lambda = 0.99;
+P=5*eye(4);
+theta=zeros(4,1);
+N=length(q2);
+Ak = [cos(q2(:)), sign(qpfil2(:)), qpfil2(:), ones(N,1)];
+y = kc2*N2*ifil2(:);
+
+R=Ak\y;
+
+disp('Parametres LS hors ligne :');
+disp(R);
+
+ = zeros(N,1);
+post_err = zeros(N,1);
+theta_est=zeros(4,N);
+
+for k = 1:N
+
+    perr=y-Ak*theta;
+    
+    RLSK=P*Ak'/(lambda + Ak*P*Ak');
+    
+    P=lambda\(eye(4)-RLSK*Ak)*P;
+    
+    theta=theta + RLSK*perr;
+    
+    post_err=y-Ak*theta;
+    
+    theta_est(:,k) = theta;
+
+end
+
+figure;
+
+noms = {'alpha_2', 'a_2', 'b_2', 'c_2'};
+
+for j = 1:4
+    subplot(2,2,j);
+    plot(theta_est(j,:), 'b');
+    hold on;
+    yline(R(j), '--r');
+    grid on;
+    title(noms{j});
+    xlabel('Echantillon k');
+    ylabel('Valeur estimee');
+    legend('RLS', 'Moindres carres hors ligne');
+end
+
+sgtitle('Evolution des parametres estimes par RLS');
+
+% Graphique 2 : erreurs de prediction
+figure;
+plot(erreur_pre, 'Color', [0.7 0.7 0.7]);
+hold on;
+plot(erreur_post, 'b');
+grid on;
+xlabel('Echantillon k');
+ylabel('Erreur (N.m)');
+legend('Avant correction', 'Apres correction');
+title('Erreurs de prediction du RLS');
+
+% Comparaison finale
+disp('Parametres finaux RLS :');
+disp(theta);
+
+disp('Parametres LS hors ligne :');
+disp(theta_LS);
