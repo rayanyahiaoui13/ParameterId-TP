@@ -6,14 +6,13 @@ load('releve_vit_cste_axe2.mat');
 
 kc2=0.0525; 
 N2=4.5;
-lambda = 0.95;
 P=100*eye(4);
-Q=0*eye(4);
+Q=0.0000001*eye(4);
 theta=zeros(4,1);
 N=length(q2);
 Ak = [cos(q2(:)), sign(qpfil2(:)), qpfil2(:), ones(N,1)];
 y = kc2*N2*ifil2(:);
-R=50;
+R=100;
 
 T=Ak\y;
 
@@ -60,10 +59,10 @@ for j = 1:4
     title(noms{j});
     xlabel('Echantillon k');
     ylabel('Valeur estimee');
-    legend('RLS', 'Moindres carres hors ligne');
+    legend('kalman', 'Moindres carres hors ligne');
 end
 
-sgtitle('Evolution des parametres estimes par RLS');
+sgtitle('Evolution des parametres estimes par kalman');
 
 % Graphique 2 : erreurs de prediction
 figure;

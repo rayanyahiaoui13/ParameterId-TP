@@ -6,7 +6,7 @@ load('releve_vit_cste_axe2.mat');
 
 kc2=0.0525; 
 N2=4.5;
-lambda = 0.95;
+lambda = 0.9999;
 P=100*eye(4);
 theta=zeros(4,1);
 N=length(q2);
